@@ -1,0 +1,7 @@
+;;; Commentary: misc packages for fun
+;;; package --- Fun
+
+;;; Code:
+
+(use-package hacker-typer
+  :ensure t)
