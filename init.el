@@ -92,6 +92,9 @@
 ;; Need to set ASKPASS to work from command
 (setenv "SUDO_ASKPASS" "/usr/bin/ssh-askpass")
 
+;; ensure right theme is there when loaded
+(use-package zenburn-theme
+  :ensure t)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
