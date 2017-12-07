@@ -13,22 +13,25 @@
   (read-only-mode t))
 
 (defun ac/compute-pythonpath (root-path)
-  (let (
-        (res-list '())
-        (content-list (directory-files root-path t))
-        (temp-python-path (getenv "PYTHONPATH"))
-        )
-    (while content-list
-      (let ((cur-file (car content-list)))
-        (cond
-         ((and
-           (file-directory-p cur-file)
-           (file-readable-p cur-file)
-           (not (string-match-p "\\." cur-file)))
-          (setq res-list (cons cur-file res-list))))
-        )
-      (setq content-list (cdr content-list)))
-    (mapconcat 'identity res-list ":")))
+  (if (file-accessible-directory-p root-path)
+    (let (
+          (res-list '())
+          (content-list (directory-files root-path t))
+          (temp-python-path (getenv "PYTHONPATH"))
+          )
+      (while content-list
+        (let ((cur-file (car content-list)))
+          (cond
+           ((and
+             (file-directory-p cur-file)
+             (file-readable-p cur-file)
+             (not (string-match-p "\\." cur-file)))
+            (setq res-list (cons cur-file res-list))))
+          )
+        (setq content-list (cdr content-list)))
+      (mapconcat 'identity res-list ":")))
+  (message "No readable files in %s" root-path)
+  )
 
 (use-package python
   :mode ("\\.py\\'" . python-mode)

@@ -64,9 +64,7 @@
 (use-package ggtags
   :ensure t)
 
-(add-to-list 'load-path "~/.emacs.d/site-lisp/magit/lisp/")
-
-(require 'magit)
+(require 'init-magit)
 
 (use-package projectile
   :ensure t
