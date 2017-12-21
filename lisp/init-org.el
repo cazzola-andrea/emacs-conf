@@ -16,6 +16,7 @@
   (add-to-list 'auto-mode-alist '("\\.txt\\'" . org-mode))
   (add-to-list 'auto-mode-alist '(".*/[0-9]*$" . org-mode))   ;; Journal entries
   (add-hook 'org-mode-hook 'yas-minor-mode-on)
+  (add-hook 'org-mode-hook 'turn-on-visual-line-mode)
   (visual-line-mode t)  ; I want the text to be seen inside the buffer
   :bind (("C-c l" . org-store-link)
          ("C-c c" . org-capture)
