@@ -27,6 +27,11 @@
   :ensure t
   )
 
+;; password creator
+(use-package password-generator
+  :ensure t
+  )
+
 ;; work chat on emacs
 ;; (use-package slack
 ;;   :ensure t

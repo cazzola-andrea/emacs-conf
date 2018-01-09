@@ -131,7 +131,7 @@
  '(org-src-block-faces (quote (("emacs-lisp" (:background "#F0FFF0")))))
  '(package-selected-packages
    (quote
-    (ox-confluence org-contrib flx-ido hydandata-light-theme flymake-puppet csv-mode hacker-typer noctilux-theme organic-green-theme paganini-theme moe-theme browse-kill-ring groovy-mode protobuf-mode flycheck-protobuf zenburn-theme yaml-mode which-key use-package unicode-fonts test-simple restclient rainbow-delimiters puppet-mode pos-tip php-extras paredit multiple-cursors meacupla-theme logview loc-changes load-relative leuven-theme ido-vertical-mode ibuffer-vc ibuffer-tramp htmlize highlight-chars git-gutter+ ggtags focus flycheck fill-column-indicator ereader elpy dired-narrow company-jedi color-identifiers-mode camcorder ag ace-window)))
+    (password-generator ox-confluence org-contrib flx-ido hydandata-light-theme flymake-puppet csv-mode hacker-typer noctilux-theme organic-green-theme paganini-theme moe-theme browse-kill-ring groovy-mode protobuf-mode flycheck-protobuf zenburn-theme yaml-mode which-key use-package unicode-fonts test-simple restclient rainbow-delimiters puppet-mode pos-tip php-extras paredit multiple-cursors meacupla-theme logview loc-changes load-relative leuven-theme ido-vertical-mode ibuffer-vc ibuffer-tramp htmlize highlight-chars git-gutter+ ggtags focus flycheck fill-column-indicator ereader elpy dired-narrow company-jedi color-identifiers-mode camcorder ag ace-window)))
  '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
  '(safe-local-variable-values (quote ((bug-reference-bug-regexp . "#\\(?2:[0-9]+\\)"))))
  '(show-paren-mode t)
