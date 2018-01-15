@@ -162,5 +162,14 @@ arguments performs an occur call on the symbol at point."
 (use-package ag
   :ensure t)
 
+
+;; yasnippet does not build snippets by default anymore.
+;; I'll install it explicitly and download the snippets
+(use-package yasnippet
+  :ensure t)
+
+(use-package yasnippet-snippets
+  :ensure t)
+
 (provide 'init-coding)
 ;;; init-coding ends here
