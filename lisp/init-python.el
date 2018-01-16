@@ -76,7 +76,8 @@
   (delete 'elpy-django elpy-modules)
   (delete 'elpy-module-pyvenv elpy-modules)
   (setq elpy-rpc-error-timeout 300)
-  (elpy-use-ipython)
+  (setq python-shell-interpreter "ipython"
+        python-shell-interpreter-args "-i")
   ;; (advice-add 'company-call-frontends :before #'on-off-fci-before-company)
   ;; (company-quickhelp-mode nil)
   (setq jedi:complete-on-dot t)
