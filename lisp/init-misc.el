@@ -32,5 +32,9 @@
   :ensure t
   )
 
+;; open huge files
+(use-package vlf
+  :ensure t)
+
 (provide 'init-misc)
 ;;; init-misc ends here
