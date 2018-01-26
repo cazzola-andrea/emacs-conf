@@ -9,9 +9,12 @@
   :bind (:map dired-mode-map
               ("/" . dired-narrow)))
 
-;; Ediff should split vertically
+;; force horizontal split
+(setq split-height-threshold nil)
+
+;; Ediff should split horizontally
 (eval-after-load 'ediff-mode
-  (setq ediff-merge-split-window-function 'split-window-vertically)
+  (setq ediff-split-window-function 'split-window-horizontally)
   )
 
 (eval-after-load 'sql
