@@ -26,5 +26,8 @@
 
 (dark-theme)
 
+(set-default 'cursor-type 'bar)
+(set-default 'cursor-in-non-selected-windows nil)
+
 (provide 'init-themes)
 ;;; init-themes ends here
