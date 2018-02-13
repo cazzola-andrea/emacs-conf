@@ -40,63 +40,22 @@
 
   :init
   (setq-default indent-tabs-mode nil)
-  (setenv "PYTHONPATH" (ac/compute-pythonpath "/home/endriu/work/utils"))
 
   :config
   (setq python-indent-offset 4)
   (setq fill-column 99)
-  ;; (add-hook 'python-mode-hook 'color-identifiers-mode)
-  ;; (add-hook 'python-mode-hook 'linum-mode)
-  ;; (add-hook 'python-mode-hook 'ac/noob-mode)
-  ;; (add-hook 'python-mode-hook 'ext/show-long-lines)
-  ;; (add-hook 'python-mode-hook 'highlight-changes-mode)
-  (setq python-check-command "flake8")
-  (setq flycheck-flake8-maximum-line-length 99)
-  ;; (add-hook 'python-mode-hook 'flycheck-mode)
-  ;; (add-hook 'python-mode-hook 'flyspell-prog-mode)
-  ;; (setq fci-rule-column 80)
-  ;; (add-hook 'python-mode-hook 'fci-mode)
-  (autoload 'jedi:setup "jedi" nil t)
-  (add-hook 'python-mode-hook 'jedi:setup)
   )
 
-(use-package elpy
+
+(use-package anaconda-mode
   :ensure t
-  :commands elpy-enable
-  :init (with-eval-after-load 'python
-          (elpy-enable))
-
   :config
-  (electric-indent-local-mode -1)
-  (setq elpy-rpc-backend "jedi")
-  ;; (setq elpy-check-command "epylint")
-  (setq elpy-test-runner 'elpy-test-nose-runner)
-  (delete 'elpy-module-highlight-indentation elpy-modules)
-  (delete 'elpy-flymake elpy-modules)
-  (delete 'elpy-django elpy-modules)
-  (delete 'elpy-module-pyvenv elpy-modules)
-  (setq elpy-rpc-error-timeout 300)
-  (setq python-shell-interpreter "ipython"
-        python-shell-interpreter-args "-i")
-  ;; (advice-add 'company-call-frontends :before #'on-off-fci-before-company)
-  ;; (company-quickhelp-mode nil)
-  (setq jedi:complete-on-dot t)
-  (add-to-list 'elpy-project-ignored-directories "*.pyc")
-  
-
-
-  (defun ha/elpy-goto-definition ()
-    (interactive)
-    (condition-case err
-      (elpy-goto-definition)
-      ('error (find-tag (symbol-name (symbol-at-point))))))
-
-  ;; :bind (:map elpy-mode-map ([remap elpy-goto-definition] . ha/elpy-goto-definition))
+  (setq anaconda-mode-lighter " 🐍")
+  (define-key anaconda-mode-map (kbd "C-c .") 'anaconda-mode-show-doc)
   )
 
-
-(with-eval-after-load 'python
-  (advice-add 'elpy-goto-definition :after-until 'find-tag))
+(add-hook 'python-mode-hook 'anaconda-mode)
+(add-hook 'python-mode-hook 'anaconda-eldoc-mode)
 
 (provide 'init-python)
 ;;; init-python ends here

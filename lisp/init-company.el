@@ -9,12 +9,19 @@
      (define-key company-active-map (kbd "C-r") 'company-select-previous)))
 
 
-(use-package company-jedi
+;; (use-package company-jedi
+;;   :ensure t
+;;   :config
+;;   (add-hook 'prog-mode-hook 'company-mode)
+;;   (setq company-gtags-modes '())
+;; )
+
+(use-package company-anaconda
   :ensure t
   :config
+  (add-to-list 'company-backends 'company-anaconda)
   (add-hook 'prog-mode-hook 'company-mode)
-  (setq company-gtags-modes '())
-)
+  )
 
 (provide 'init-company)
 
