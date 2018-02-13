@@ -41,5 +41,8 @@
   :init (require 'vlf-setup)
   )
 
+;; set default font
+(set-frame-font "SourceCodePro")
+
 (provide 'init-misc)
 ;;; init-misc ends here
