@@ -44,5 +44,14 @@
 ;; set default font
 (set-frame-font "SourceCodePro")
 
+;; Configure powerline
+(use-package spaceline
+  :ensure t
+  :init
+  (require 'spaceline-config)
+  (spaceline-spacemacs-theme)
+  )
+
+
 (provide 'init-misc)
 ;;; init-misc ends here
