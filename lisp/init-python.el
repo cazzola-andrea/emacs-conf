@@ -57,5 +57,13 @@
 (add-hook 'python-mode-hook 'anaconda-mode)
 (add-hook 'python-mode-hook 'anaconda-eldoc-mode)
 
+(defun ac/py-list-classes-funcs ()
+  "List all python classes and functions within a module."
+  (interactive)
+  (occur "^[ ]*\\(?:class\\|def\\) [^(]+(\\(?:[^:]*\\(?:\n[^:]*\\)*?\\)):")
+  )
+
+(define-key python-mode-map (kbd "C-C C-o") 'ac/py-list-classes-funcs)
+
 (provide 'init-python)
 ;;; init-python ends here
