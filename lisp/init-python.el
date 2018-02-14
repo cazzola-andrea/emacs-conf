@@ -44,6 +44,7 @@
   :config
   (setq python-indent-offset 4)
   (setq fill-column 99)
+  (setq flycheck-flake8-maximum-line-length 99)
   )
 
 
