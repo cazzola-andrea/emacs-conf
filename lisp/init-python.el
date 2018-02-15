@@ -36,8 +36,6 @@
 (use-package python
   :mode ("\\.py\\'" . python-mode)
         ("\\.wsgi$" . python-mode)
-  :interpreter ("python" . python-mode)
-
   :init
   (setq-default indent-tabs-mode nil)
 
@@ -45,6 +43,7 @@
   (setq python-indent-offset 4)
   (setq fill-column 99)
   (setq flycheck-flake8-maximum-line-length 99)
+  (setq python-shell-interpreter "ipython")
   )
 
 
@@ -52,7 +51,11 @@
   :ensure t
   :config
   (setq anaconda-mode-lighter " 🐍")
-  (define-key anaconda-mode-map (kbd "C-c .") 'anaconda-mode-show-doc)
+  (define-key anaconda-mode-map (kbd "C-c C-d") 'anaconda-mode-show-doc)
+  (define-key anaconda-mode-map (kbd "C-c .") 'anaconda-mode-find-definitions)
+  (define-key anaconda-mode-map (kbd "C-c ,") 'anaconda-mode-go-back)
+  (define-key anaconda-mode-map (kbd "C-c C-r") 'anaconda-mode-find-references)
+  (define-key anaconda-mode-map (kbd "C-c C-a") 'anaconda-mode-find-assignments)
   )
 
 (add-hook 'python-mode-hook 'anaconda-mode)
