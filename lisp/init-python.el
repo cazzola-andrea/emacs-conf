@@ -64,7 +64,9 @@
 (defun ac/py-list-classes-funcs ()
   "List all python classes and functions within a module."
   (interactive)
+  (ac/toggle-match-highlight)
   (occur "^[ ]*\\(?:class\\|def\\) [^(]+(\\(?:[^:]*\\(?:\n[^:]*\\)*?\\)):")
+  (ac/toggle-match-highlight)
   )
 
 (define-key python-mode-map (kbd "C-C C-o") 'ac/py-list-classes-funcs)

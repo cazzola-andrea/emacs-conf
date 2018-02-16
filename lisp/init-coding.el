@@ -150,6 +150,28 @@ arguments performs an occur call on the symbol at point."
 (global-set-key (kbd "M-s o") 'ac/occur)
 
 
+;; Manage highligh (useful for full line occur)
+(defvar previous-match-highlight nil)
+
+(if list-matching-lines-face
+    (setq previous-match-highlight list-matching-lines-face))
+
+(defun ac/toggle-match-highlight ()
+  "Toggle highlight face."
+  (interactive)
+  (if list-matching-lines-face
+      (progn
+        (setq previous-match-highlight list-matching-lines-face)
+        (setq list-matching-lines-face nil)
+        (message "Highlight matches is OFF"))
+    (progn
+      (setq list-matching-lines-face previous-match-highlight)
+      (setq previous-match-highlight nil)
+      (message "Highlight matches is ON")))
+  )
+
+(define-key occur-mode-map (kbd "t") 'ac/toggle-match-highlight)
+
 ;; aliases to coding systems
 (define-coding-system-alias 'utf8 'utf-8)
 (define-coding-system-alias 'UTF-8 'utf-8)
