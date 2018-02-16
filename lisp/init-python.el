@@ -71,5 +71,16 @@
 
 (define-key python-mode-map (kbd "C-C C-o") 'ac/py-list-classes-funcs)
 
+;; use inferior python mode for async command invoking a python shell
+(defun ac/python-shell-mode (buffer-name)
+  "Activate inferior python mode for shell commands, renaming buffer to BUFFER-NAME."
+  (interactive "B")
+  (setq python-shell--interpreter "ipython")
+  (setq python-shell--interpreter-args "-i")
+  (inferior-python-mode)
+  (rename-buffer buffer-name)
+  (buffer-enable-undo)
+  )
+
 (provide 'init-python)
 ;;; init-python ends here
