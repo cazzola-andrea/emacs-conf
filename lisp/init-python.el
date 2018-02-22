@@ -65,7 +65,7 @@
   "List all python classes and functions within a module."
   (interactive)
   (ac/toggle-match-highlight)
-  (occur "^[ ]*\\(?:class\\|def\\) [^(]+(\\(?:[^:]*\\(?:\n[^:]*\\)*?\\)):")
+  (occur "^[ ]*\\(?:class\\|def\\) [^(^ ]+[ ]*(\\(?:[^:]*\\(?:\n[^:]*\\)*?\\)):")
   (ac/toggle-match-highlight)
   )
 
