@@ -54,6 +54,7 @@
 )
 
 (use-package flycheck
+  :diminish flycheck-mode
   :ensure t
   :config
   (setq flycheck-idle-change-delay 3)

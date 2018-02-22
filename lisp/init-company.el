@@ -17,6 +17,7 @@
 ;; )
 
 (use-package company-anaconda
+  :diminish company-mode
   :ensure t
   :config
   (add-to-list 'company-backends 'company-anaconda)

@@ -48,6 +48,8 @@
 
 
 (use-package anaconda-mode
+  :diminish anaconda-mode
+  :diminish eldoc-mode
   :ensure t
   :config
   (setq anaconda-mode-lighter " 🐍")
