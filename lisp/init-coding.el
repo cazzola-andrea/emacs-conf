@@ -194,5 +194,11 @@ arguments performs an occur call on the symbol at point."
 (use-package yasnippet-snippets
   :ensure t)
 
+;; highlight brackets
+(progn
+  (show-paren-mode 1)
+  (setq show-paren-style 'parenthesis)
+  )
+
 (provide 'init-coding)
 ;;; init-coding ends here
