@@ -33,6 +33,135 @@
   (message "No readable files in %s" root-path)
   )
 
+;; copy some of elpy functions to move around code
+(defun elpy--nav-move-region-vertically (beg end dir)
+  (let* ((point-before-mark (< (point) (mark)))
+         (beg (save-excursion
+                (goto-char beg)
+                (point-at-bol)))
+         (end (save-excursion
+                (goto-char end)
+                (if (bolp)
+                    (point)
+                  (point-at-bol 2))))
+         (region (delete-and-extract-region beg end)))
+    (goto-char beg)
+    (forward-line dir)
+    (save-excursion
+      (insert region))
+    (if point-before-mark
+        (set-mark (+ (point)
+                     (length region)))
+      (set-mark (point))
+      (goto-char (+ (point)
+                    (length region))))
+    (setq deactivate-mark nil)))
+
+(defun elpy--nav-move-line-vertically (dir)
+  (let* ((beg (point-at-bol))
+         (end (point-at-bol 2))
+         (col (current-column))
+         (region (delete-and-extract-region beg end)))
+    (forward-line dir)
+    (save-excursion
+      (insert region))
+    (goto-char (+ (point) col))))
+
+(defun elpy-nav-move-line-or-region-down (&optional beg end)
+  "Move the current line or active region down."
+  (interactive
+   (if (use-region-p)
+       (list (region-beginning) (region-end))
+     (list nil nil)))
+  (if beg
+      (elpy--nav-move-region-vertically beg end 1)
+    (elpy--nav-move-line-vertically 1)))
+
+(defun elpy-nav-move-line-or-region-up (&optional beg end)
+  "Move the current line or active region down."
+  (interactive
+   (if (use-region-p)
+       (list (region-beginning) (region-end))
+     (list nil nil)))
+  (if beg
+      (elpy--nav-move-region-vertically beg end -1)
+    (elpy--nav-move-line-vertically -1)))
+
+(defun elpy-nav-forward-block ()
+  "Move to the next line indented like point.
+This will skip over lines and statements with different
+indentation levels."
+  (interactive "^")
+  (let ((indent (current-column))
+        (start (point))
+        (cur nil))
+    (when (/= (% indent python-indent-offset)
+              0)
+      (setq indent (* (1+ (/ indent python-indent-offset))
+                      python-indent-offset)))
+    (python-nav-forward-statement)
+    (while (and (< indent (current-indentation))
+                (not (eobp)))
+      (when (equal (point) cur)
+        (error "Statement does not finish"))
+      (setq cur (point))
+      (python-nav-forward-statement))
+    (when (< (current-indentation)
+             indent)
+      (goto-char start))))
+
+(defun elpy-nav-backward-block ()
+  "Move to the previous line indented like point.
+This will skip over lines and statements with different
+indentation levels."
+  (interactive "^")
+  (let ((indent (current-column))
+        (start (point))
+        (cur nil))
+    (when (/= (% indent python-indent-offset)
+              0)
+      (setq indent (* (1+ (/ indent python-indent-offset))
+                      python-indent-offset)))
+    (python-nav-backward-statement)
+    (while (and (< indent (current-indentation))
+                (not (bobp)))
+      (when (equal (point) cur)
+        (error "Statement does not start"))
+      (setq cur (point))
+      (python-nav-backward-statement))
+    (when (< (current-indentation)
+             indent)
+      (goto-char start))))
+
+(defun elpy-nav-forward-indent ()
+  "Move forward to the next indent level, or over the next word."
+  (interactive "^")
+  (if (< (current-column) (current-indentation))
+      (let* ((current (current-column))
+             (next (* (1+ (/ current python-indent-offset))
+                      python-indent-offset)))
+        (goto-char (+ (point-at-bol)
+                      next)))
+    (let ((eol (point-at-eol)))
+      (forward-word)
+      (when (> (point) eol)
+        (goto-char (point-at-bol))))))
+
+(defun elpy-nav-backward-indent ()
+  "Move backward to the previous indent level, or over the previous word."
+  (interactive "^")
+  (if (and (<= (current-column) (current-indentation))
+           (/= (current-column) 0))
+      (let* ((current (current-column))
+             (next (* (1- (/ current python-indent-offset))
+                      python-indent-offset)))
+        (goto-char (+ (point-at-bol)
+                      next)))
+    (backward-word)))
+
+;; end of elpy functions
+
+
 (use-package python
   :mode ("\\.py\\'" . python-mode)
         ("\\.wsgi$" . python-mode)
@@ -44,6 +173,14 @@
   (setq fill-column 99)
   (setq flycheck-flake8-maximum-line-length 99)
   (setq python-shell-interpreter "ipython")
+  (define-key python-mode-map (kbd "<M-right>") 'python-indent-shift-right)
+  (define-key python-mode-map (kbd "<M-left>") 'python-indent-shift-left)
+  (define-key python-mode-map (kbd "<M-up>") 'elpy-nav-move-line-or-region-up)
+  (define-key python-mode-map (kbd "<M-down>") 'elpy-nav-move-line-or-region-down)
+  (define-key python-mode-map (kbd "<C-up>") 'elpy-nav-backward-block)
+  (define-key python-mode-map (kbd "<C-down>") 'elpy-nav-forward-block)
+  (define-key python-mode-map (kbd "<C-right>") 'elpy-nav-forward-indent)
+  (define-key python-mode-map (kbd "<C-left>") 'elpy-nav-backward-indent)
   )
 
 
