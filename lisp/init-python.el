@@ -200,6 +200,16 @@ indentation levels."
 (add-hook 'python-mode-hook 'anaconda-mode)
 (add-hook 'python-mode-hook 'anaconda-eldoc-mode)
 
+(defun ac/py-list-classes-dispatch (generic-argument)
+  "Dispatch correct occur in python files."
+  (interactive "P")
+    (if (eq nil generic-argument)
+      (ac/py-list-classes-funcs)
+    (let ((current-prefix-arg nil))
+      (ac/py-list-classes))
+    )
+  )
+
 (defun ac/py-list-classes-funcs ()
   "List all python classes and functions within a module."
   (interactive)
@@ -208,7 +218,15 @@ indentation levels."
   (ac/toggle-match-highlight)
   )
 
-(define-key python-mode-map (kbd "C-C C-o") 'ac/py-list-classes-funcs)
+(defun ac/py-list-classes ()
+  "List all python classes within a module."
+  (interactive)
+  (ac/toggle-match-highlight)
+  (occur "^[ ]*class [^(^ ]+[ ]*(\\(?:[^:]*\\(?:\n[^:]*\\)*?\\)):")
+  (ac/toggle-match-highlight)
+  )
+
+(define-key python-mode-map (kbd "C-C C-o") 'ac/py-list-classes-dispatch)
 
 ;; use inferior python mode for async command invoking a python shell
 (defun ac/python-shell-mode (buffer-name)
