@@ -189,10 +189,13 @@ arguments performs an occur call on the symbol at point."
 ;; yasnippet does not build snippets by default anymore.
 ;; I'll install it explicitly and download the snippets
 (use-package yasnippet
+  :diminish 'yas-minor-mode
   :ensure t)
 
 (use-package yasnippet-snippets
   :ensure t)
+
+(add-hook 'prog-mode-hook 'yas-minor-mode)
 
 ;; highlight brackets
 (progn
