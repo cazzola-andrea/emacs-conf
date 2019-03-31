@@ -43,7 +43,7 @@
 
 (use-package diminish
   :ensure t
-)
+  )
 
 (use-package which-key
   :diminish which-key-mode
@@ -60,7 +60,7 @@
   (setq flycheck-idle-change-delay 3)
   (delete 'new-line flycheck-check-syntax-automatically)
   (add-hook 'prog-mode-hook 'flycheck-mode)
-)
+  )
 
 (use-package ggtags
   :ensure t)
@@ -79,6 +79,7 @@
   (setq projectile-mode-line '(:eval
                                (format " P[%s]"
                                        (projectile-project-name))))
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   )
 
 (defun ac/discover-projecs (directory)
@@ -125,6 +126,12 @@
   :config
   (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 )
+
+(use-package flyspell
+  :ensure t
+  :config
+  (add-hook 'prog-mode-hook 'flyspell-prog-mode)
+  )
 
 (use-package git-gutter+
   :diminish git-gutter+-mode
@@ -190,7 +197,9 @@ arguments performs an occur call on the symbol at point."
 ;; I'll install it explicitly and download the snippets
 (use-package yasnippet
   :diminish 'yas-minor-mode
-  :ensure t)
+  :ensure t
+  :config
+  (yas-load-directory "~/.emacs.d/snippets/"))
 
 (use-package yasnippet-snippets
   :ensure t)

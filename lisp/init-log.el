@@ -24,6 +24,12 @@
                   (levels . "LL-levels")
                   (timestamp)
                   (aliases)))
+  (add-to-list 'logview-additional-submodes
+               '("LL-command-log"
+                 (format . "IGNORED:IGNORED:TIMESTAMP - THREAD - LEVEL")
+                 (levels . "LL-levels")
+                 (timestamp)
+                 (aliases)))
   ;; (add-to-list 'logview-additional-submodes
   ;;              '("Nginx"
   ;;                (format . "TIMESTAMP ")

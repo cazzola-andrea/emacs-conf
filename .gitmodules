@@ -7,3 +7,12 @@
 [submodule "site-lisp/use-package"]
 	path = site-lisp/use-package
 	url = https://github.com/jwiegley/use-package.git
+[submodule "anaconda-mode"]
+	path = site-lisp/anaconda-mode
+	url = https://github.com/proofit404/anaconda-mode.git
+[submodule "pythonic"]
+	path = site-lisp/pythonic
+	url = https://github.com/proofit404/pythonic.git
+[submodule "rfcview"]
+	path = site-lisp/rfcview.el
+	url = https://github.com/zeph1e/rfcview.el.git

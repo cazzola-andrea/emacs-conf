@@ -1,6 +1,6 @@
-(setq tramp-verbose 0)
-;; (setq tramp-default-method "ssh")
-;; (setq tramp-use-ssh-controlmaster-options nil) ; Use the ssh controlmaster configuration
+(setq tramp-verbose 2)
+(setq tramp-default-method "ssh")
+(setq tramp-use-ssh-controlmaster-options nil) ; Use the ssh controlmaster configuration
 
 (setq tramp-default-user-alist
       '(

@@ -14,24 +14,26 @@
 
 (defun ac/compute-pythonpath (root-path)
   (if (file-accessible-directory-p root-path)
-    (let (
-          (res-list '())
-          (content-list (directory-files root-path t))
-          (temp-python-path (getenv "PYTHONPATH"))
-          )
-      (while content-list
-        (let ((cur-file (car content-list)))
-          (cond
-           ((and
-             (file-directory-p cur-file)
-             (file-readable-p cur-file)
-             (not (string-match-p "\\." cur-file)))
-            (setq res-list (cons cur-file res-list))))
-          )
+      (let (
+            (res-list '())
+            (content-list (directory-files root-path t))
+            (temp-python-path (getenv "PYTHONPATH"))
+            )
+        (while content-list
+          (let ((cur-file (car content-list)))
+            (cond
+             ((and
+               (file-directory-p cur-file)
+               (file-readable-p cur-file)
+               (not (string-match-p "\\." cur-file)))
+              (setq res-list (cons cur-file res-list))))
+            )
         (setq content-list (cdr content-list)))
-      (mapconcat 'identity res-list ":")))
-  (message "No readable files in %s" root-path)
+        (mapconcat 'identity res-list ":"))
+    (message "No readable files in '%s'" root-path))
   )
+
+(setenv "PYTHONPATH" (ac/compute-pythonpath "/home/endriu/work/code"))
 
 ;; copy some of elpy functions to move around code
 (defun elpy--nav-move-region-vertically (beg end dir)
@@ -173,21 +175,47 @@ indentation levels."
   (setq fill-column 99)
   (setq flycheck-flake8-maximum-line-length 99)
   (setq python-shell-interpreter "ipython")
+  (add-to-list 'python-shell-completion-native-disabled-interpreters "ll_docker")
+  (add-to-list 'python-shell-completion-native-disabled-interpreters "docker")
   (define-key python-mode-map (kbd "<M-right>") 'python-indent-shift-right)
   (define-key python-mode-map (kbd "<M-left>") 'python-indent-shift-left)
   (define-key python-mode-map (kbd "<M-up>") 'elpy-nav-move-line-or-region-up)
   (define-key python-mode-map (kbd "<M-down>") 'elpy-nav-move-line-or-region-down)
   (define-key python-mode-map (kbd "<C-up>") 'elpy-nav-backward-block)
+  (define-key python-mode-map (kbd "M-p") 'elpy-nav-backward-block)
   (define-key python-mode-map (kbd "<C-down>") 'elpy-nav-forward-block)
+  (define-key python-mode-map (kbd "M-n") 'elpy-nav-forward-block)
   (define-key python-mode-map (kbd "<C-right>") 'elpy-nav-forward-indent)
   (define-key python-mode-map (kbd "<C-left>") 'elpy-nav-backward-indent)
   )
 
+(use-package f
+  :ensure t
+  )
+
+(defvar pythonic-standard-directory "~/work/venv")
+
+;; (defun ac/pythonic-auto-setup ()
+;;   (let ((dir pythonic-standard-directory))
+;;     (when (and (file-directory-p dir)
+;;                (not pythonic-environment))
+;;       (add-to-list 'python-shell-extra-pythonpaths "/usr/lib/python2.7/dist-packages")
+;;       (pythonic-activate dir))
+;;     ))
+
+(use-package pythonic
+  :load-path "~/.emacs.d/site-lisp/pythonic"
+  :config
+  ;; (add-hook 'python-mode-hook 'ac/pythonic-auto-setup)
+  ;; (add-to-list 'python-shell-extra-pythonpaths "/usr/lib/python2.7/dist-packages")
+  )
+
+
 
 (use-package anaconda-mode
+  :load-path "~/.emacs.d/site-lisp/anaconda-mode/"
   :diminish anaconda-mode
   :diminish eldoc-mode
-  :ensure t
   :config
   (setq anaconda-mode-lighter " 🐍")
   (define-key anaconda-mode-map (kbd "C-c C-d") 'anaconda-mode-show-doc)
@@ -195,6 +223,7 @@ indentation levels."
   (define-key anaconda-mode-map (kbd "C-c ,") 'anaconda-mode-go-back)
   (define-key anaconda-mode-map (kbd "C-c C-r") 'anaconda-mode-find-references)
   (define-key anaconda-mode-map (kbd "C-c C-a") 'anaconda-mode-find-assignments)
+  (define-key anaconda-mode-map (kbd "C-c c") 'anaconda-mode-complete)
   )
 
 (add-hook 'python-mode-hook 'anaconda-mode)
@@ -238,6 +267,23 @@ indentation levels."
   (rename-buffer buffer-name)
   (buffer-enable-undo)
   )
+
+;; python style regexps
+(use-package visual-regexp
+  :ensure t)
+
+(use-package visual-regexp-steroids
+  :ensure t
+  :config
+  (define-key global-map (kbd "M-s r") 'vr/mc-mark))
+
+(eval-after-load 'projectile-mode
+  (projectile-register-project-type 'python-lastline '("setup.py")
+                                    :compile "lastline_make_deb -d"
+                                    :test "nosetests"
+                                    :test-prefix "test_"
+                                    :test-suffix"_test"))
+
 
 (provide 'init-python)
 ;;; init-python ends here

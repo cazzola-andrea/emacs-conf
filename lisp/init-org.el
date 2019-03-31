@@ -1,6 +1,14 @@
 (use-package htmlize
   :ensure t)
 
+
+(add-to-list 'char-highlighted-major-modes 'org-mode)
+
+(defun ac/open-org-notes ()
+  "Open file with notes."
+  (interactive)
+  (find-file org-default-notes-file))
+
 (use-package org
   :ensure t        ; But it comes with Emacs now!?
   :init
@@ -11,6 +19,7 @@
         org-src-fontify-natively t   ;; Pretty code blocks
         org-src-tab-acts-natively t
         org-confirm-babel-evaluate nil
+        org-default-notes-file "~/.notes.org"
         org-todo-keywords '((sequence "TODO(t)" "DOING(g)" "|" "DONE(d)")
                             (sequence "|" "CANCELED(c)")))
   (add-to-list 'auto-mode-alist '("\\.txt\\'" . org-mode))
@@ -20,7 +29,8 @@
   (visual-line-mode t)  ; I want the text to be seen inside the buffer
   :bind (("C-c l" . org-store-link)
          ("C-c c" . org-capture)
-         ("C-M-|" . indent-rigidly))
+         ("C-M-|" . indent-rigidly)
+         ("C-c n" . ac/open-org-notes))
   :config
   (font-lock-add-keywords            ; A bit silly but my headers are now
    'org-mode `(("^\\*+ \\(TODO\\) "  ; shorter, and that is nice canceled
@@ -58,12 +68,10 @@
   :config
   (org-babel-do-load-languages
    'org-babel-load-languages
-   '((sh         . t)
+   '((shell      . t)
      (js         . t)
      (emacs-lisp . t)
      (perl       . t)
-     (scala      . t)
-     (clojure    . t)
      (python     . t)
      (ruby       . t)
      (dot        . t)

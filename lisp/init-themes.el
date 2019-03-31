@@ -1,12 +1,14 @@
 (package-install 'zenburn-theme)
 (package-install 'leuven-theme)
+(package-install 'hydandata-light-theme)
 
 ;; load themes without enabling them and without asking for confirmation
 (load-theme 'leuven t t)
 (load-theme 'zenburn t t)
+(load-theme 'acazzola-light t t)
 
 (defvar current-dark-theme 'zenburn)
-(defvar current-light-theme 'leuven)
+(defvar current-light-theme 'acazzola-light)
 
 (defun dark-theme ()
   "Enable dark theme of choice."
@@ -24,10 +26,19 @@
   (enable-theme current-light-theme)
   )
 
-(dark-theme)
+(light-theme)
 
 (set-default 'cursor-type 'bar)
 (set-default 'cursor-in-non-selected-windows nil)
+
+;; set default font
+(set-frame-font "SourceCodePro" t nil)
+(set-face-attribute 'default nil :height 105)
+
+;; force horizontal split
+(setq split-height-threshold nil)
+(setq split-width-threshold 160)
+
 
 (provide 'init-themes)
 ;;; init-themes ends here
