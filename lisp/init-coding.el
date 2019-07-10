@@ -1,5 +1,6 @@
-;;; Commentary:
 ;;; package --- Summary
+
+;;; Commentary:
 
 ;;; Code:
 
@@ -211,6 +212,19 @@ arguments performs an occur call on the symbol at point."
   (show-paren-mode 1)
   (setq show-paren-style 'parenthesis)
   )
+
+;; RFC pages
+(add-to-list 'load-path "~/.emacs.d/site-lisp/rfcview.el")
+(require 'rfcview)
+
+;; Embedded ruby mode
+(add-to-list 'load-path "~/.emacs.d/site-lisp/emacs-eruby-mode")
+(require 'eruby-mode)
+(set-face-background 'eruby-standard-face "gainsboro")
+(set-face-attribute 'eruby-standard-face nil :slant 'italic)
+
+;; add infrastructure tools to path
+(setenv "PATH" (concat (getenv "PATH") ":/home/endriu/work/code/infrastructure-tools/scripts"))
 
 (provide 'init-coding)
 ;;; init-coding ends here
