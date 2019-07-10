@@ -8,6 +8,7 @@
 (use-package gnus
   :config
   (setq gnus-parameters'((".*" (display . all))))
+  (setq gnus-group-sort-function 'gnus-group-sort-by-alphabet)
   (setq gnus-thread-indent-level 1)
   (setq gnus-thread-sort-functions
         '((not gnus-thread-sort-by-number)
