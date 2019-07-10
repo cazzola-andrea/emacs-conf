@@ -88,6 +88,9 @@ register, otherwise use DEFAULT-WINDOWS-CONFIGURATION-REGISTER."
   (ansi-color-apply-on-region (point-min) (point-max))
   )
 
+(use-package x509-mode
+  :ensure t)
+
 
 (provide 'init-misc)
 ;;; init-misc ends here
