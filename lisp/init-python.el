@@ -193,24 +193,10 @@ indentation levels."
   :ensure t
   )
 
-(defvar pythonic-standard-directory "~/work/venv")
-
-;; (defun ac/pythonic-auto-setup ()
-;;   (let ((dir pythonic-standard-directory))
-;;     (when (and (file-directory-p dir)
-;;                (not pythonic-environment))
-;;       (add-to-list 'python-shell-extra-pythonpaths "/usr/lib/python2.7/dist-packages")
-;;       (pythonic-activate dir))
-;;     ))
-
 (use-package pythonic
   :load-path "~/.emacs.d/site-lisp/pythonic"
   :config
-  ;; (add-hook 'python-mode-hook 'ac/pythonic-auto-setup)
-  ;; (add-to-list 'python-shell-extra-pythonpaths "/usr/lib/python2.7/dist-packages")
   )
-
-
 
 (use-package anaconda-mode
   :load-path "~/.emacs.d/site-lisp/anaconda-mode/"
@@ -219,10 +205,9 @@ indentation levels."
   :config
   (setq anaconda-mode-lighter " 🐍")
   (define-key anaconda-mode-map (kbd "C-c C-d") 'anaconda-mode-show-doc)
-  (define-key anaconda-mode-map (kbd "C-c .") 'anaconda-mode-find-definitions)
-  (define-key anaconda-mode-map (kbd "C-c ,") 'anaconda-mode-go-back)
-  (define-key anaconda-mode-map (kbd "C-c C-r") 'anaconda-mode-find-references)
-  (define-key anaconda-mode-map (kbd "C-c C-a") 'anaconda-mode-find-assignments)
+  (define-key anaconda-mode-map (kbd "C-c .") 'anaconda-mode-find-definitions-other-window)
+  (define-key anaconda-mode-map (kbd "C-c C-r") 'anaconda-mode-find-references-other-window)
+  (define-key anaconda-mode-map (kbd "C-c C-a") 'anaconda-mode-find-assignments-other-window)
   (define-key anaconda-mode-map (kbd "C-c c") 'anaconda-mode-complete)
   )
 
