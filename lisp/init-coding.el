@@ -188,7 +188,9 @@ arguments performs an occur call on the symbol at point."
 
 
 (use-package multiple-cursors
-  :ensure t)
+  :ensure t
+  :bind (("C-c m e" . mc/edit-lines))
+  )
 
 (use-package ag
   :ensure t)
