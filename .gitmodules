@@ -16,3 +16,9 @@
 [submodule "rfcview"]
 	path = site-lisp/rfcview.el
 	url = https://github.com/zeph1e/rfcview.el.git
+[submodule "emacs-ruby-mode"]
+	path = site-lisp/emacs-eruby-mode
+	url = https://github.com/petere/emacs-eruby-mode.git
+[submodule "embedded-ruby-mode"]
+	path = site-lisp/emacs-eruby-mode
+	url = https://github.com/petere/emacs-eruby-mode.git
