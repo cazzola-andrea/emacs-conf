@@ -13,7 +13,6 @@
   (setq gnus-thread-sort-functions
         '((not gnus-thread-sort-by-number)
           (not gnus-thread-sort-by-date)))
-  (define-key gnus-group-mode-map "q" 'bury-buffer)
   )
 
 (setq user-mail-address "acazzola@lastline.com"
