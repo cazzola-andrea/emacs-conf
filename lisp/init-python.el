@@ -205,9 +205,10 @@ indentation levels."
   :config
   (setq anaconda-mode-lighter " 🐍")
   (define-key anaconda-mode-map (kbd "C-c C-d") 'anaconda-mode-show-doc)
-  (define-key anaconda-mode-map (kbd "C-c .") 'anaconda-mode-find-definitions-other-window)
-  (define-key anaconda-mode-map (kbd "C-c C-r") 'anaconda-mode-find-references-other-window)
-  (define-key anaconda-mode-map (kbd "C-c C-a") 'anaconda-mode-find-assignments-other-window)
+  (define-key anaconda-mode-map (kbd "C-c .") 'anaconda-mode-find-definitions)
+  (define-key anaconda-mode-map (kbd "C-c C-r") 'anaconda-mode-find-references)
+  (define-key anaconda-mode-map (kbd "C-c C-a") 'anaconda-mode-find-assignments)
+  (define-key anaconda-mode-map (kbd "C-c ,") 'xref-pop-marker-stack)
   (define-key anaconda-mode-map (kbd "C-c c") 'anaconda-mode-complete)
   )
 
