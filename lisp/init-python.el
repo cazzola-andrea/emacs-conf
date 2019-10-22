@@ -223,22 +223,29 @@ indentation levels."
     (let ((current-prefix-arg nil))
       (ac/py-list-classes))
     )
-  )
+    )
+
+(defconst ac/multiline-python-header-re
+  "^[ ]*%s [^(^ ]+\\(?:[ ]*(\\(?:[^:]*\\(?:\n[^:]*\\)*?\\))\\)?:")
 
 (defun ac/py-list-classes-funcs ()
   "List all python classes and functions within a module."
   (interactive)
-  (ac/toggle-match-highlight)
-  (occur "^[ ]*\\(?:class\\|def\\) [^(^ ]+[ ]*(\\(?:[^:]*\\(?:\n[^:]*\\)*?\\)):")
-  (ac/toggle-match-highlight)
+  (let ((class-def-search-re "\\(?:class\\|def\\)"))
+    (ac/toggle-match-highlight)
+    (occur (format ac/multiline-python-header-re class-def-search-re))
+    (ac/toggle-match-highlight)
+    )
   )
 
 (defun ac/py-list-classes ()
   "List all python classes within a module."
   (interactive)
-  (ac/toggle-match-highlight)
-  (occur "^[ ]*class [^(^ ]+[ ]*(\\(?:[^:]*\\(?:\n[^:]*\\)*?\\)):")
-  (ac/toggle-match-highlight)
+  (let ((class-search-re "class"))
+    (ac/toggle-match-highlight)
+    (occur (format ac/multiline-python-header-re class-search-re))
+    (ac/toggle-match-highlight)
+    )
   )
 
 (define-key python-mode-map (kbd "C-C C-o") 'ac/py-list-classes-dispatch)
