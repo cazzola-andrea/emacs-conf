@@ -89,7 +89,7 @@
 (defvar ac/current-layout 'colemack)
 (setq aw-keys '(?a ?r ?s ?t ?n ?e ?i ?o))
 
-(defun ac/swith-avy-layout ()
+(defun ac/switch-avy-layout ()
   "Switch between layouts for avy-window-switch"
   (interactive)
   (if (eq ac/current-layout 'colemack)
