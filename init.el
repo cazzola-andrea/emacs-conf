@@ -87,7 +87,9 @@
 
 ;; switch between layouts for avy
 (defvar ac/current-layout 'colemack)
-(setq aw-keys '(?a ?r ?s ?t ?n ?e ?i ?o))
+(defconst ac/aw-keys-colemack '(?a ?r ?s ?t ?n ?e ?i ?o))
+(defconst ac/aw-keys-querty '(?a ?s ?d ?f ?j ?k ?l ?o))
+(setq aw-keys ac/aw-keys-colemack)
 
 (defun ac/switch-avy-layout ()
   "Switch between layouts for avy-window-switch"
@@ -95,9 +97,9 @@
   (if (eq ac/current-layout 'colemack)
       ;; switch to querty
       (progn (setq ac/current-layout 'querty)
-             (setq aw-keys '(?a ?s ?d ?f ?j ?k ?l ?o)))
+             (setq aw-keys ac/aw-keys-querty))
     (progn (setq ac/current-layout 'colemack)
-           (setq aw-keys '(?a ?r ?s ?t ?n ?e ?i ?o))))
+           (setq aw-keys ac/aw-keys-colemack)))
   )
 
 (use-package browse-kill-ring
