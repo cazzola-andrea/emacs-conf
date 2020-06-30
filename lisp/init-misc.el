@@ -88,6 +88,11 @@ register, otherwise use DEFAULT-WINDOWS-CONFIGURATION-REGISTER."
   (ansi-color-apply-on-region (point-min) (point-max))
   )
 
+(defun ac/timestamp-to-date (timestamp)
+  "Convert a UNIX TIMESTAMP into a readable datetime in UTC."
+  (interactive "nTimestamp: ")
+  (message (format-time-string "%Y-%m-%d %H:%M:%S" (seconds-to-time timestamp) t)))
+
 (use-package x509-mode
   :ensure t)
 
