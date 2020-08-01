@@ -1,0 +1,5 @@
+#key: encoding
+#name: insert encoding string in python
+#contributor: Andrea Cazzola
+# --
+# -*- coding: <$0> -*-
