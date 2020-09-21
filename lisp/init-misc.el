@@ -96,6 +96,10 @@ register, otherwise use DEFAULT-WINDOWS-CONFIGURATION-REGISTER."
 (use-package x509-mode
   :ensure t)
 
+;; Markdown mode
+(use-package markdown-mode
+  :ensure t)
+
 
 (provide 'init-misc)
 ;;; init-misc ends here
