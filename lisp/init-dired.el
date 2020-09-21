@@ -2,8 +2,10 @@
 
 (use-package dired-narrow
   :ensure t
-  :bind (:map dired-mode-map
-              ("/" . dired-narrow)))
+)
 
+(eval-after-load 'dired-mode
+  (define-key dired-mode-map
+    (kbd "/") 'dired-narrow))
 
 (provide 'init-dired)
