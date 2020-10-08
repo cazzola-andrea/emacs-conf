@@ -98,6 +98,15 @@
              (projectile-add-known-project (projectile-project-root))))))
      subdirs)))
 
+;; Use side bar
+(use-package sr-speedbar
+  :ensure t)
+
+(use-package projectile-speedbar
+  :ensure t
+  :config
+  (define-key projectile-mode-map (kbd "C-c p |") 'projectile-speedbar-toggle)
+  )
 
 (use-package flx-ido
   :ensure t)
