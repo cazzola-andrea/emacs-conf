@@ -60,7 +60,8 @@
 (add-hook 'c-mode-common-hook 'c-eldoc-minor-mode)
 
 ;; Code movements
-
+(define-key c++-mode-map (kbd "M-p") 'beginning-of-defun)
+(define-key c++-mode-map (kbd "M-n") 'end-of-defun)
 
 ;; List function names
 

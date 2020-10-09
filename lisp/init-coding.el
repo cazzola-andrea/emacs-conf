@@ -105,6 +105,7 @@
 (use-package projectile-speedbar
   :ensure t
   :config
+  (setq projectile-speedbar-enable nil) ; default disable, enable on command
   (define-key projectile-mode-map (kbd "C-c p |") 'projectile-speedbar-toggle)
   )
 
