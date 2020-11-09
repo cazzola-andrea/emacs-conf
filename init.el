@@ -74,6 +74,7 @@
 (require 'init-fun)
 (require 'init-tramp)
 (require 'init-mail)
+(require 'init-pcap)
 
 ;; fonts
 ;; (use-package unicode-fonts
@@ -131,7 +132,7 @@
  '(gnus-inhibit-images t)
  '(hl-sexp-background-color "#efebe9")
  '(package-selected-packages
-   '(projectile-speedbar company-c-headers sr-speedbar lsp-ui dap-mode tron-legacy-theme markdown-mode diff-at-point lush-theme x509-mode all docker-compose-mode docker-tramp dockerfile-mode hydandata-light-theme lab-themes flucui-themes visual-regexp-steroids visual-regexp f anaconda-eldoc-mode spaceline powerline zenburn-theme yasnippet-snippets yaml-mode which-key vlf use-package unicode-fonts test-simple restclient rainbow-delimiters puppet-mode protobuf-mode projectile pos-tip php-extras password-generator paredit multiple-cursors magit-popup logview loc-changes load-relative leuven-theme ido-vertical-mode ibuffer-vc ibuffer-tramp htmlize highlight-chars hacker-typer groovy-mode git-gutter+ ggtags focus flymake-puppet flycheck flx-ido fill-column-indicator ereader elpy dired-narrow diminish csv-mode company-jedi color-identifiers-mode camcorder browse-kill-ring ag ace-window))
+   '(pcap-mode libgit projectile-speedbar company-c-headers sr-speedbar lsp-ui dap-mode tron-legacy-theme markdown-mode diff-at-point lush-theme x509-mode all docker-compose-mode docker-tramp dockerfile-mode hydandata-light-theme lab-themes flucui-themes visual-regexp-steroids visual-regexp f anaconda-eldoc-mode spaceline powerline zenburn-theme yasnippet-snippets yaml-mode which-key vlf use-package unicode-fonts test-simple restclient rainbow-delimiters puppet-mode protobuf-mode projectile pos-tip php-extras password-generator paredit multiple-cursors magit-popup logview loc-changes load-relative leuven-theme ido-vertical-mode ibuffer-vc ibuffer-tramp htmlize highlight-chars hacker-typer groovy-mode git-gutter+ ggtags focus flymake-puppet flycheck flx-ido fill-column-indicator ereader elpy dired-narrow diminish csv-mode company-jedi color-identifiers-mode camcorder browse-kill-ring ag ace-window))
  '(send-mail-function 'mailclient-send-it)
  '(shell-input-autoexpand 'input))
 (custom-set-faces
@@ -139,7 +140,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(lsp-ui-doc-background ((t (:background nil))))
+ '(lsp-ui-doc-header ((t (:inherit (font-lock-string-face italic))))))
 
 (put 'narrow-to-region 'disabled nil)
 
