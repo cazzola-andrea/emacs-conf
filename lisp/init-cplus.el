@@ -4,13 +4,23 @@
 ;;; Code:
 (require 'cc-mode)
 (require 'init-coding)
-(add-to-list 'char-highlighted-major-modes 'c-mode 'cc-mode)
+(add-to-list 'char-highlighted-major-modes 'c-mode)
+(add-to-list 'char-highlighted-major-modes 'c++-mode)
 
 (require 'ggtags)
-(add-hook 'c-mode-common-hook 'ggtags-mode)
+(setenv "GTAGSLABEL" "ctags")
+(setenv "GTAGSFORCECPP" "y")
+(add-hook 'c-mode-common-hook
+          (lambda ()
+            (when (derived-mode-p 'c-mode 'c++-mode)
+              (ggtags-mode 1)
+              (c-eldoc-minor-mode)
+              (c-set-style "ellemtel")
+              (subword-mode))))
+
 
 ;; ggtags keybinds
-(define-key ggtags-mode-map (kbd "C-c .") 'ggtags-find-tag-dwim)
+(define-key ggtags-mode-map (kbd "C-c .") 'ggtags-find-definition)
 (define-key ggtags-mode-map (kbd "C-c s") 'ggtags-find-other-symbol)
 (define-key ggtags-mode-map (kbd "C-c h") 'ggtags-view-tag-history)
 (define-key ggtags-mode-map (kbd "C-c r") 'ggtags-find-reference)
@@ -21,8 +31,8 @@
 
 ;; Code completion with company-clang
 (setq company-backends (delete 'company-semantic company-backends))
-(define-key c-mode-map  [(tab)] 'company-complete)
-(define-key c++-mode-map  [(tab)] 'company-complete)
+;; (define-key c-mode-map  [(tab)] 'company-complete)
+;; (define-key c++-mode-map  [(tab)] 'company-complete)
 
 ;; Header completion
 (use-package company-c-headers
@@ -56,8 +66,6 @@
   "Turn off `c-eldoc-minor-mod'."
   (kill-local-variable 'eldoc-documentation-function)
   (eldoc-mode -1))
-
-(add-hook 'c-mode-common-hook 'c-eldoc-minor-mode)
 
 ;; Code movements
 (define-key c++-mode-map (kbd "M-p") 'beginning-of-defun)
