@@ -55,16 +55,16 @@
   :config
   (font-lock-add-keywords            ; A bit silly but my headers are now
    'org-mode `(                      ; shorter, and that is nice canceled 
-               ("^\\*+ \\(TODO\\) "  
+               ("^ *\\*+ \\(TODO\\) "
                (1 (progn (compose-region (match-beginning 1) (match-end 1) "⚑")
                          nil)))
-               ("^\\*+ \\(DOING\\) "
+               ("^ *\\*+ \\(DOING\\) "
                 (1 (progn (compose-region (match-beginning 1) (match-end 1) "→")
                           nil)))
-               ("^\\*+ \\(CANCELED\\) "
+               ("^ *\\*+ \\(CANCELED\\) "
                 (1 (progn (compose-region (match-beginning 1) (match-end 1) "✘")
                           nil)))
-               ("^\\*+ \\(DONE\\) "
+               ("^ *\\*+ \\(DONE\\) "
                 (1 (progn (compose-region (match-beginning 1) (match-end 1) "✔")
                           nil)))))
 
