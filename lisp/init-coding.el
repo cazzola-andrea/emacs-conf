@@ -28,6 +28,8 @@
       )
     )
   )
+
+(add-to-list 'char-highlighted-major-modes 'conf-mode)
     
 
 ;; hc-toggle-highlight-whitespace
