@@ -75,6 +75,7 @@
 (require 'init-tramp)
 (require 'init-mail)
 (require 'init-pcap)
+(require 'init-jsonnet)
 
 ;; fonts
 ;; (use-package unicode-fonts
@@ -123,6 +124,8 @@
  ;; If there is more than one, they won't work right.
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
+ '(ansi-color-names-vector
+   ["#2d3743" "#ff4242" "#74af68" "#dbdb95" "#34cae2" "#008b8b" "#00ede1" "#e1e1e0"])
  '(async-shell-command-display-buffer nil)
  '(cursor-in-non-selected-windows nil)
  '(cursor-type 'bar)
@@ -132,7 +135,12 @@
  '(gnus-inhibit-images t)
  '(hl-sexp-background-color "#efebe9")
  '(package-selected-packages
-   '(pcap-mode libgit projectile-speedbar company-c-headers sr-speedbar lsp-ui dap-mode tron-legacy-theme markdown-mode diff-at-point lush-theme x509-mode all docker-compose-mode docker-tramp dockerfile-mode hydandata-light-theme lab-themes flucui-themes visual-regexp-steroids visual-regexp f anaconda-eldoc-mode spaceline powerline zenburn-theme yasnippet-snippets yaml-mode which-key vlf use-package unicode-fonts test-simple restclient rainbow-delimiters puppet-mode protobuf-mode projectile pos-tip php-extras password-generator paredit multiple-cursors magit-popup logview loc-changes load-relative leuven-theme ido-vertical-mode ibuffer-vc ibuffer-tramp htmlize highlight-chars hacker-typer groovy-mode git-gutter+ ggtags focus flymake-puppet flycheck flx-ido fill-column-indicator ereader elpy dired-narrow diminish csv-mode company-jedi color-identifiers-mode camcorder browse-kill-ring ag ace-window))
+   '(jsonnet-mode git-modes coterm elf-mode ll-debug misterioso-theme misterioso marginalia pcap-mode libgit projectile-speedbar company-c-headers sr-speedbar lsp-ui dap-mode tron-legacy-theme markdown-mode diff-at-point lush-theme x509-mode all docker-compose-mode docker-tramp dockerfile-mode hydandata-light-theme lab-themes flucui-themes visual-regexp-steroids visual-regexp f anaconda-eldoc-mode spaceline powerline zenburn-theme yasnippet-snippets yaml-mode which-key vlf use-package unicode-fonts test-simple restclient rainbow-delimiters puppet-mode protobuf-mode projectile pos-tip php-extras password-generator paredit multiple-cursors magit-popup logview loc-changes load-relative leuven-theme ido-vertical-mode ibuffer-vc ibuffer-tramp htmlize highlight-chars hacker-typer groovy-mode git-gutter+ ggtags focus flymake-puppet flycheck flx-ido fill-column-indicator ereader elpy dired-narrow diminish csv-mode company-jedi color-identifiers-mode camcorder browse-kill-ring ag ace-window))
+ '(safe-local-variable-values
+   '((auto-save-mode . -1)
+     (auto-save-mode)
+     (projectile-project-test-cmd . "ll_docker -D bionic run 'nosetests && ./pylint.sh'")
+     (projectile-project-compilation-cmd . "dockerbuilder --tag 'dev-latest.bionic' build")))
  '(send-mail-function 'mailclient-send-it)
  '(shell-input-autoexpand 'input))
 (custom-set-faces
