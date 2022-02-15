@@ -22,6 +22,13 @@
             )
   )
 
+;; Recognise MariaDB prompt
+(eval-after-load 'sql
+  (sql-set-product-feature 'mysql :prompt-regexp
+                           "^\\(MariaDB\\|MySQL\\) \\[[_a-zA-Z]*\\]> ")
+  )
+
+
 ;; work with csv data
 (use-package csv-mode
   :ensure t
