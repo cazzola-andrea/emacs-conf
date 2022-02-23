@@ -25,7 +25,7 @@
 ;; Recognise MariaDB prompt
 (eval-after-load 'sql
   (sql-set-product-feature 'mysql :prompt-regexp
-                           "^\\(MariaDB\\|MySQL\\) \\[[_a-zA-Z]*\\]> ")
+                           "^\\(MariaDB\\|MySQL\\) \\[[\\(_a-zA-Z\\)]*\\]> ")
   )
 
 
