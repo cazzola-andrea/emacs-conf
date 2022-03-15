@@ -6,10 +6,11 @@
 ;; load themes without enabling them and without asking for confirmation
 (load-theme 'leuven t t)
 (load-theme 'zenburn t t)
+(load-theme 'misterioso t t)
 (load-theme 'tron-legacy t t)
 (load-theme 'acazzola-light t t)
 
-(defvar current-dark-theme 'tron-legacy)
+(defvar current-dark-theme 'misterioso)
 (defvar current-light-theme 'acazzola-light)
 
 (defun dark-theme ()
