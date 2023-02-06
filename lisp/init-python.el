@@ -164,56 +164,31 @@ indentation levels."
 ;; end of elpy functions
 
 
-(use-package python
-  :mode ("\\.py\\'" . python-mode)
-        ("\\.wsgi$" . python-mode)
-  :init
-  (setq-default indent-tabs-mode nil)
+;; (use-package f
+;;   :ensure t
+;;   )
 
-  :config
-  (setq python-indent-offset 4)
-  (setq fill-column 99)
-  (setq flycheck-flake8-maximum-line-length 99)
-  (setq python-shell-interpreter "ipython")
-  (add-to-list 'python-shell-completion-native-disabled-interpreters "ll_docker")
-  (add-to-list 'python-shell-completion-native-disabled-interpreters "docker")
-  (define-key python-mode-map (kbd "<M-right>") 'python-indent-shift-right)
-  (define-key python-mode-map (kbd "<M-left>") 'python-indent-shift-left)
-  (define-key python-mode-map (kbd "<M-up>") 'elpy-nav-move-line-or-region-up)
-  (define-key python-mode-map (kbd "<M-down>") 'elpy-nav-move-line-or-region-down)
-  (define-key python-mode-map (kbd "<C-up>") 'elpy-nav-backward-block)
-  (define-key python-mode-map (kbd "M-p") 'elpy-nav-backward-block)
-  (define-key python-mode-map (kbd "<C-down>") 'elpy-nav-forward-block)
-  (define-key python-mode-map (kbd "M-n") 'elpy-nav-forward-block)
-  (define-key python-mode-map (kbd "<C-right>") 'elpy-nav-forward-indent)
-  (define-key python-mode-map (kbd "<C-left>") 'elpy-nav-backward-indent)
-  )
+;; (use-package pythonic
+;;   :load-path "~/.emacs.d/site-lisp/pythonic"
+;;   :config
+;;   )
 
-(use-package f
-  :ensure t
-  )
+;; (use-package anaconda-mode
+;;   :load-path "~/.emacs.d/site-lisp/anaconda-mode/"
+;;   :diminish anaconda-mode
+;;   :diminish eldoc-mode
+;;   :config
+;;   (setq anaconda-mode-lighter " 🐍")
+;;   (define-key anaconda-mode-map (kbd "C-c C-d") 'anaconda-mode-show-doc)
+;;   (define-key anaconda-mode-map (kbd "C-c .") 'anaconda-mode-find-definitions)
+;;   (define-key anaconda-mode-map (kbd "C-c C-r") 'anaconda-mode-find-references)
+;;   (define-key anaconda-mode-map (kbd "C-c C-a") 'anaconda-mode-find-assignments)
+;;   (define-key anaconda-mode-map (kbd "C-c ,") 'xref-pop-marker-stack)
+;;   (define-key anaconda-mode-map (kbd "C-c c") 'anaconda-mode-complete)
+;;   )
 
-(use-package pythonic
-  :load-path "~/.emacs.d/site-lisp/pythonic"
-  :config
-  )
-
-(use-package anaconda-mode
-  :load-path "~/.emacs.d/site-lisp/anaconda-mode/"
-  :diminish anaconda-mode
-  :diminish eldoc-mode
-  :config
-  (setq anaconda-mode-lighter " 🐍")
-  (define-key anaconda-mode-map (kbd "C-c C-d") 'anaconda-mode-show-doc)
-  (define-key anaconda-mode-map (kbd "C-c .") 'anaconda-mode-find-definitions)
-  (define-key anaconda-mode-map (kbd "C-c C-r") 'anaconda-mode-find-references)
-  (define-key anaconda-mode-map (kbd "C-c C-a") 'anaconda-mode-find-assignments)
-  (define-key anaconda-mode-map (kbd "C-c ,") 'xref-pop-marker-stack)
-  (define-key anaconda-mode-map (kbd "C-c c") 'anaconda-mode-complete)
-  )
-
-(add-hook 'python-mode-hook 'anaconda-mode)
-(add-hook 'python-mode-hook 'anaconda-eldoc-mode)
+;; (add-hook 'python-mode-hook 'anaconda-mode)
+;; (add-hook 'python-mode-hook 'anaconda-eldoc-mode)
 
 (defun ac/py-list-classes-dispatch (generic-argument)
   "Dispatch correct occur in python files."
@@ -222,8 +197,7 @@ indentation levels."
       (ac/py-list-classes-funcs)
     (let ((current-prefix-arg nil))
       (ac/py-list-classes))
-    )
-    )
+    ))
 
 (defconst ac/multiline-python-header-re
   "^[ ]*%s [^(^ ]+\\(?:[ ]*(\\(?:[^:]*\\(?:\n[^:]*\\)*?\\))\\)?:")
@@ -248,34 +222,96 @@ indentation levels."
     )
   )
 
-(define-key python-mode-map (kbd "C-C C-o") 'ac/py-list-classes-dispatch)
 
-;; use inferior python mode for async command invoking a python shell
-(defun ac/python-shell-mode (buffer-name)
-  "Activate inferior python mode for shell commands, renaming buffer to BUFFER-NAME."
-  (interactive "B")
-  (setq python-shell--interpreter "ipython")
-  (setq python-shell--interpreter-args "-i")
-  (inferior-python-mode)
-  (rename-buffer buffer-name)
-  (buffer-enable-undo)
-  )
 
-;; python style regexps
-(use-package visual-regexp
-  :ensure t)
+;; ;; ;; use inferior python mode for async command invoking a python shell
+;; ;; (defun ac/python-shell-mode (buffer-name)
+;; ;;   "Activate inferior python mode for shell commands, renaming buffer to BUFFER-NAME."
+;; ;;   (interactive "B")
+;; ;;   (setq python-shell--interpreter "ipython")
+;; ;;   (setq python-shell--interpreter-args "-i")
+;; ;;   (inferior-python-mode)
+;; ;;   (rename-buffer buffer-name)
+;; ;;   (buffer-enable-undo)
+;; ;;   )
 
-(use-package visual-regexp-steroids
+;; ;; python style regexps
+;; (use-package visual-regexp
+;;   :ensure t)
+
+;; (use-package visual-regexp-steroids
+;;   :ensure t
+;;   :config
+;;   (define-key global-map (kbd "M-s r") 'vr/mc-mark))
+
+(use-package python
+  :mode ("\\.py\\'" . python-mode)
+        ("\\.wsgi$" . python-mode)
+  :init
+  (setq-default indent-tabs-mode nil)
+
+  :config
+  (setq python-indent-offset 4)
+  (setq fill-column 99)
+  (setq flycheck-flake8-maximum-line-length 99)
+  (setq python-shell-interpreter "ipython3")
+  (define-key python-mode-map (kbd "<M-right>") 'python-indent-shift-right)
+  (define-key python-mode-map (kbd "<M-left>") 'python-indent-shift-left)
+  (define-key python-mode-map (kbd "<M-up>") 'elpy-nav-move-line-or-region-up)
+  (define-key python-mode-map (kbd "<M-down>") 'elpy-nav-move-line-or-region-down)
+  (define-key python-mode-map (kbd "<C-up>") 'elpy-nav-backward-block)
+  (define-key python-mode-map (kbd "M-p") 'elpy-nav-backward-block)
+  (define-key python-mode-map (kbd "<C-down>") 'elpy-nav-forward-block)
+  (define-key python-mode-map (kbd "M-n") 'elpy-nav-forward-block)
+  (define-key python-mode-map (kbd "<C-right>") 'elpy-nav-forward-indent)
+  (define-key python-mode-map (kbd "<C-left>") 'elpy-nav-backward-indent)
+  (define-key python-mode-map (kbd "C-C C-o") 'ac/py-list-classes-dispatch))
+
+(use-package lsp-mode
   :ensure t
   :config
-  (define-key global-map (kbd "M-s r") 'vr/mc-mark))
 
-(eval-after-load 'projectile-mode
-  (projectile-register-project-type 'python-lastline '("setup.py")
-                                    :compile "lastline_make_deb -d"
-                                    :test "nosetests"
-                                    :test-prefix "test_"
-                                    :test-suffix"_test"))
+  ;; make sure we have lsp-imenu everywhere we have LSP
+  (require 'lsp-imenu)
+  (require 'dap-ui)
+  (add-hook 'lsp-after-open-hook 'lsp-enable-imenu)  
+  ;; get lsp-python-enable defined
+  ;; NB: use either projectile-project-root or ffip-get-project-root-directory
+  ;;     or any other function that can be used to find the root directory of a project
+  (lsp-define-stdio-client lsp-python "python3"
+                           #'projectile-project-root
+                           '("pylsp"))
+
+  ;; make sure this is activated when python-mode is activated
+  ;; lsp-python-enable is created by macro above 
+  (add-hook 'python-mode-hook
+            (lambda ()
+              (lsp-python-enable)))
+
+  ;; lsp extras
+  (use-package lsp-ui
+    :ensure t
+    :config
+    (setq lsp-ui-sideline-ignore-duplicate t)
+    (add-hook 'lsp-mode-hook 'lsp-ui-mode))
+
+  (use-package company-lsp
+    :config
+    (push 'company-lsp company-backends))
+
+  ;; NB: only required if you prefer flake8 instead of the default
+  ;; send pyls config via lsp-after-initialize-hook -- harmless for
+  ;; other servers due to pyls key, but would prefer only sending this
+  ;; when pyls gets initialised (:initialize function in
+  ;; lsp-define-stdio-client is invoked too early (before server
+  ;; start)) -- cpbotha
+  (defun lsp-set-cfg ()
+    (let ((lsp-cfg `(:pyls (:configurationSources ("mypy")))))
+      ;; TODO: check lsp--cur-workspace here to decide per server / project
+      (lsp--set-configuration lsp-cfg)))
+
+  (add-hook 'lsp-after-initialize-hook 'lsp-set-cfg))
+
 
 
 (provide 'init-python)
