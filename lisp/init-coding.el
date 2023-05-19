@@ -8,6 +8,10 @@
 (require 'init-company)
 
 
+(use-package eglot
+  :ensure t)
+
+
 (defvar char-highlighted-major-modes '()
   "List of modes where we highlight characters."
   )
