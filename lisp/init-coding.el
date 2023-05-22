@@ -231,6 +231,11 @@ arguments performs an occur call on the symbol at point."
   (setq show-paren-style 'parenthesis)
   )
 
+;; File hierarchy in the headers
+(add-to-list 'load-path "~/.emacs.d/site-lisp/breadcrumb")
+(require 'breadcrumb)
+(breadcrumb-mode)
+
 ;; RFC pages
 (add-to-list 'load-path "~/.emacs.d/site-lisp/rfcview.el")
 (require 'rfcview)
