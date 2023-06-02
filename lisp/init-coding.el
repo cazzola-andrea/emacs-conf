@@ -252,5 +252,15 @@ arguments performs an occur call on the symbol at point."
 ;; add infrastructure tools to path
 (setenv "PATH" (concat (getenv "PATH") ":/home/endriu/work/code/infrastructure-tools/scripts"))
 
+;; Handle ansi-characters in compilation buffer
+(use-package xterm-color
+  :ensure t)
+
+(setq compilation-environment '("TERM=xterm-256color"))
+(defun my/advice-compilation-filter (f proc string)
+  (funcall f proc (xterm-color-filter string)))
+(advice-add 'compilation-filter :around #'my/advice-compilation-filter)
+
+
 (provide 'init-coding)
 ;;; init-coding ends here
