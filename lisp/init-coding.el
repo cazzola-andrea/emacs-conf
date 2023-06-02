@@ -11,6 +11,9 @@
 (use-package eglot
   :ensure t)
 
+(setq-default eglot-workspace-configuration
+              '(:pylsp (:plugins (:mypy (:live_mode :json-false)))))
+
 
 (defvar char-highlighted-major-modes '()
   "List of modes where we highlight characters."
