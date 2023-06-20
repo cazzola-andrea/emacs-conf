@@ -100,9 +100,6 @@ register, otherwise use DEFAULT-WINDOWS-CONFIGURATION-REGISTER."
   (interactive "nTimestamp: ")
   (message (format-time-string "%Y-%m-%d %H:%M:%S" (seconds-to-time timestamp) t)))
 
-(use-package x509-mode
-  :ensure t)
-
 ;; Markdown mode
 (use-package markdown-mode
   :ensure t)
