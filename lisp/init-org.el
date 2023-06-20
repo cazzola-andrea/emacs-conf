@@ -16,6 +16,7 @@
   (not (member (nth 2 (org-heading-components)) org-done-keywords)))
 
 (use-package org
+  :pin gnu
   :ensure t        ; But it comes with Emacs now!?
   :init
   (setq org-use-speed-commands t
