@@ -45,14 +45,6 @@
   :init (require 'vlf-setup)
   )
 
-;; Configure powerline
-(use-package spaceline
-  :ensure t
-  :init
-  (require 'spaceline-config)
-  (spaceline-spacemacs-theme)
-  )
-
 (defvar ac/default-windows-configuration-register 48)
 
 (defvar ac/window-configuration-register nil)

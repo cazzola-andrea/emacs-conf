@@ -43,5 +43,14 @@
 (setq split-width-threshold 160)
 
 
+;; Configure powerline
+(use-package spaceline
+  :ensure t
+  :init
+  (require 'spaceline-config)
+  (spaceline-spacemacs-theme)
+  )
+
+
 (provide 'init-themes)
 ;;; init-themes ends here
