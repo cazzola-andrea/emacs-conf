@@ -241,7 +241,8 @@ indentation levels."
   (define-key python-mode-map (kbd "C-c .") 'xref-find-definitions)
   (define-key python-mode-map (kbd "C-c C-r") 'xref-find-references)
   (define-key python-mode-map (kbd "C-c ,") 'xref-go-back)
-  (define-key python-mode-map (kbd "C-c c") 'company-complete))
+  (define-key python-mode-map (kbd "C-c c") 'company-complete)
+  (define-key python-mode-map (kbd "C-c R") 'eglot-rename))
 
 (add-hook 'python-mode-hook 'eglot-ensure)
 
