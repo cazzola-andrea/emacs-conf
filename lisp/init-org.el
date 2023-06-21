@@ -118,11 +118,16 @@
      (ruby       . t)
      (dot        . t)
      (css        . t)
-     (plantuml   . t))))
+     (plantuml   . t)
+     (sql        . t))))
 
 ;; (eval-after-load 'org-src
 ;;   '(define-key org-src-mode-map
 ;;      (kbd "C-x C-s") #'org-edit-src-exit))
+
+;; Enable asyncronous execution of code blocks
+(use-package ob-async
+  :ensure t)
 
 (setq org-confirm-babel-evaluate nil)
 
