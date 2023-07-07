@@ -75,6 +75,7 @@
 (require 'init-mail)
 (require 'init-pcap)
 (require 'init-jsonnet)
+(require 'init-rust)
 
 ;; fonts
 ;; (use-package unicode-fonts
