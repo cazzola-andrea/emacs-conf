@@ -40,8 +40,9 @@
     
 
 ;; hc-toggle-highlight-whitespace
+(add-to-list 'load-path "~/.emacs.d/site-lisp/hc-highlight-chars")
 (use-package highlight-chars
-  :ensure t
+  :ensure nil
   :config
   (add-hook 'change-major-mode-hook
             'ac/highlight-trailing-whitespace

@@ -16,3 +16,6 @@
 [submodule "site-lisp/breadcrumb"]
 	path = site-lisp/breadcrumb
 	url = https://github.com/joaotavora/breadcrumb.git
+[submodule "site-lisp/hc-highlight-chars"]
+	path = site-lisp/hc-highlight-chars
+	url = https://github.com/emacsmirror/highlight-chars.git
