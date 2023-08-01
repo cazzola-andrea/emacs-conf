@@ -35,7 +35,7 @@
 (set-default 'cursor-in-non-selected-windows nil)
 
 ;; set default font
-(set-frame-font "SourceCodePro" t nil)
+(set-frame-font "Source Code Pro" t nil)
 (set-face-attribute 'default nil :height 105)
 
 ;; force horizontal split
