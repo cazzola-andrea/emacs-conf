@@ -5,8 +5,15 @@
                          ("melpa"     . "https://melpa.org/packages/")
                          )
       )
-
 (package-initialize)
+
+;; If not installed, install use-package
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+(eval-and-compile
+  (setq use-package-always-ensure t
+        use-package-expand-minimally t))
 
 ;; ;; Force load of .bashrc when executing commands
 ;; (setq shell-command-switch "-ic")
@@ -20,18 +27,6 @@
     )
   )
 (add-hook 'comint-mode-hook 'disable-undo-shell)
-
-;; Install use-package from elpa
-;; (unless (package-installed-p 'use-package)
-;;   (package-refresh-contents)
-;;   (package-install 'use-package))
-;; (require 'use-package)
-
-;; Load from git repo
-(eval-when-compile
-  ;; Following line is not needed if use-package.el is in ~/.emacs.d
-  (add-to-list 'load-path "~/.emacs.d/site-lisp/use-package")
-  (require 'use-package))
 
 (setq-default indent-tabs-mode nil)
 (setq tab-width 4)
