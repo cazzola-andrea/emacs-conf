@@ -85,7 +85,7 @@
     :diminish ace-window-mode)
 
 ;; switch between layouts for avy
-(defvar ac/current-layout 'colemack)
+(defvar ac/current-layout 'querty)
 (defconst ac/aw-keys-colemack '(?a ?r ?s ?t ?n ?e ?i ?o))
 (defconst ac/aw-keys-querty '(?a ?s ?d ?f ?j ?k ?l ?o))
 (setq aw-keys ac/aw-keys-querty)
@@ -110,7 +110,7 @@
 
 
 ;; Need to set ASKPASS to work from command
-(setenv "SUDO_ASKPASS" "/usr/bin/ssh-askpass")
+(setenv "SUDO_ASKPASS" "ssh-askpass")
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
