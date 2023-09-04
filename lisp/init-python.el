@@ -224,7 +224,6 @@ indentation levels."
   :config
   (setq python-indent-offset 4)
   (setq fill-column 99)
-  (setq flycheck-flake8-maximum-line-length 99)
   (setq python-shell-interpreter "ipython3")
   (define-key python-mode-map (kbd "<M-right>") 'python-indent-shift-right)
   (define-key python-mode-map (kbd "<M-left>") 'python-indent-shift-left)
@@ -245,6 +244,14 @@ indentation levels."
   (define-key python-mode-map (kbd "C-c R") 'eglot-rename))
 
 (add-hook 'python-mode-hook 'eglot-ensure)
+(setq-default eglot-workspace-configuration
+              '(:pylsp (:plugins (:mypy (:live_mode :json-false)))))
+;; Disable pylint by default (should work faster)
+(setq-default eglot-workspace-configuration
+              '(:pylsp (:plugins (:pylint (:enabled :json-false)))))
+(setq-default eglot-workspace-configuration
+              '(:pylsp (:plugins (:pycodestyle (:maxLineLength 99)))))
+
 
 
 (provide 'init-python)
