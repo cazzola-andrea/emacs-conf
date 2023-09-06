@@ -18,6 +18,14 @@
 ;; ;; Force load of .bashrc when executing commands
 ;; (setq shell-command-switch "-ic")
 
+;; Load variables from shell if in a mac
+(use-package exec-path-from-shell
+  :ensure t
+  :config
+  (when (memq window-system '(mac ns x))
+    (exec-path-from-shell-initialize))
+  )
+
 ;; I don't need undo info on shell output
 (defun disable-undo-shell ()
   (let ((name-buffer (buffer-name)))
