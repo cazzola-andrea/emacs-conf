@@ -154,3 +154,8 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
+
+;; Start maximised
+(setq frame-resize-pixelwise t)
+(toggle-frame-maximized)
+
