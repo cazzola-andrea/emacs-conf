@@ -155,7 +155,6 @@
 (setq org-crypt-key nil)
 
 ;; add contrib modules (confluence)
-(add-to-list 'load-path "~/.emacs.d/site-lisp/org-mode/contrib/lisp" t)
 (require 'ox-confluence)
 
 (provide 'init-org)
