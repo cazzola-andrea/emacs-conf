@@ -113,5 +113,11 @@ register, otherwise use DEFAULT-WINDOWS-CONFIGURATION-REGISTER."
   ;; switch between the annotators.
   (setq marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light)))
 
+
+;; Swap buffers quickly
+(use-package buffer-move
+  :ensure t)
+
+
 (provide 'init-misc)
 ;;; init-misc ends here
