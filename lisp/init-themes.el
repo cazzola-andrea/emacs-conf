@@ -36,7 +36,7 @@
 
 ;; set default font
 (set-frame-font "Source Code Pro" t nil)
-(set-face-attribute 'default nil :height 105)
+(set-face-attribute 'default nil :height 125)
 
 ;; force horizontal split
 (setq split-height-threshold nil)
