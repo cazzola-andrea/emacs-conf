@@ -183,7 +183,7 @@ indentation levels."
     ))
 
 (defconst ac/multiline-python-header-re
-  "^[ ]*%s [^(^ ]+\\(?:[ ]*(\\(?:[^:]*\\(?:\n[^:]*\\)*?\\))\\)?:")
+  "^[ ]*%s \\(?:.*?\\(\n.*?\\)*?\\):$")
 
 (defun ac/py-list-classes-funcs ()
   "List all python classes and functions within a module."
