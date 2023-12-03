@@ -157,4 +157,7 @@
 ;; add contrib modules (confluence)
 (require 'ox-confluence)
 
+;; Fix problem with epg and GNU-2.4.3
+(fset 'epg-wait-for-status 'ignore)
+
 (provide 'init-org)
